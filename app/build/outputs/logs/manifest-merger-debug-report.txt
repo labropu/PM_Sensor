@@ -1,0 +1,252 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/e5dbae8a1f0135ef0f89aa5072ff7839/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/8bcc935de0346e2d9b60b4858941313e/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/ecbf9c8f6d0e56b6ff10a636b4a899fb/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/a07924b82dc72cac2da2ef01ef0ae713/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/7ebab17a4c8f703854d7c96f204bcfeb/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/a23cf5be78088a87b40c8199a808af3a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/75560d1b91f51fb0019e68877da51dc9/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/ccfca0f977777e1782b75cc77bfb1f96/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/14ab278412493dda77530d207fa33fe7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/20623c85aeb36766a93f06a40c3fd159/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/462a91f5341927960a2e6e5858614540/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/1c8d7e66e1d6d56641d55b1f9ab335e1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/2c76d52532b3026a12397daa6974eb64/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/d25d15752754f4b6d9043f53bf08a72b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/6ed258e7b19af572ef23b600422a16b1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/59cfa299ed5d8f6f028ca3d65123b5af/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/9feefb03779891009a9cfe867781924f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/682df9aaa7fe4b22b55a6c7317241e90/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/5a93947ef01508ef44d75101d54ac332/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/04cffb966a8469ae5fe50bc860b3b53e/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/e6017900c684d2a4737adf4c46dff8e5/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/508c0d365324ba2f22cac2b4daddf774/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/f17ab6190c9518b703ca3734a9288631/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/49be7894dec2f8c52e0eb926ab97ea6f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/b65e940700964296ba621c3c23aace70/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6894899ef1df4e8d7cf02e8047b085cb/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/bae0e1032881e7938defb41a424b7b7b/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/57476892f676d6effcfbabc98c291cd5/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/ea82b4e7d3f08e7d08821bc96e172aef/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/91416b206d560e047c787e4fe7c1eda2/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:1-53:12
+	package
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:3:5-31
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:5:5-30
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+uses-feature#android.hardware.bluetooth_le
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:7:5-9:35
+	android:required
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:9:9-32
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:8:9-53
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:11:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:12:5-74
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:12:22-71
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:13:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:14:22-78
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:15:5-81
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:15:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:16:5-79
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:16:22-76
+uses-feature#android.hardware.location.gps
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:18:5-66
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:18:19-63
+uses-feature#android.hardware.location.network
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:19:5-70
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:19:19-67
+application
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:23:5-51:19
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/e5dbae8a1f0135ef0f89aa5072ff7839/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/e5dbae8a1f0135ef0f89aa5072ff7839/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/8bcc935de0346e2d9b60b4858941313e/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/8bcc935de0346e2d9b60b4858941313e/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/ecbf9c8f6d0e56b6ff10a636b4a899fb/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/ecbf9c8f6d0e56b6ff10a636b4a899fb/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/04cffb966a8469ae5fe50bc860b3b53e/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/04cffb966a8469ae5fe50bc860b3b53e/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:22:18-91
+	android:label
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:26:9-41
+	android:icon
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:25:9-41
+	android:allowBackup
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:24:9-35
+	android:theme
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:27:9-40
+activity#com.redbear.chat.Main
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:28:9-37:20
+	android:screenOrientation
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:31:13-49
+	android:label
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:30:13-45
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:29:13-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:32:13-36:29
+action#android.intent.action.MAIN
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:33:17-69
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:33:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:35:17-77
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:35:27-74
+activity#com.redbear.chat.Chat
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:38:9-42:20
+	android:screenOrientation
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:40:13-49
+	android:windowSoftInputMode
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:41:13-54
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:39:13-49
+activity#com.redbear.chat.Device
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:43:17-46:20
+	android:theme
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:45:13-56
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:44:13-35
+service#com.redbear.chat.RBLService
+ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:48:9-50:38
+	android:enabled
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:50:13-35
+	android:name
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml:49:13-55
+uses-sdk
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/e5dbae8a1f0135ef0f89aa5072ff7839/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/e5dbae8a1f0135ef0f89aa5072ff7839/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/8bcc935de0346e2d9b60b4858941313e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-16.0.0.aar/8bcc935de0346e2d9b60b4858941313e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/ecbf9c8f6d0e56b6ff10a636b4a899fb/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-tasks-16.0.1.aar/ecbf9c8f6d0e56b6ff10a636b4a899fb/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/a07924b82dc72cac2da2ef01ef0ae713/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/a07924b82dc72cac2da2ef01ef0ae713/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/7ebab17a4c8f703854d7c96f204bcfeb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/7ebab17a4c8f703854d7c96f204bcfeb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/a23cf5be78088a87b40c8199a808af3a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/a23cf5be78088a87b40c8199a808af3a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/75560d1b91f51fb0019e68877da51dc9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/75560d1b91f51fb0019e68877da51dc9/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/ccfca0f977777e1782b75cc77bfb1f96/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/ccfca0f977777e1782b75cc77bfb1f96/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/14ab278412493dda77530d207fa33fe7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/14ab278412493dda77530d207fa33fe7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/20623c85aeb36766a93f06a40c3fd159/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/20623c85aeb36766a93f06a40c3fd159/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/462a91f5341927960a2e6e5858614540/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/462a91f5341927960a2e6e5858614540/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/1c8d7e66e1d6d56641d55b1f9ab335e1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/1c8d7e66e1d6d56641d55b1f9ab335e1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/2c76d52532b3026a12397daa6974eb64/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/2c76d52532b3026a12397daa6974eb64/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/d25d15752754f4b6d9043f53bf08a72b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/d25d15752754f4b6d9043f53bf08a72b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/6ed258e7b19af572ef23b600422a16b1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/6ed258e7b19af572ef23b600422a16b1/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/59cfa299ed5d8f6f028ca3d65123b5af/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/59cfa299ed5d8f6f028ca3d65123b5af/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/9feefb03779891009a9cfe867781924f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/9feefb03779891009a9cfe867781924f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/682df9aaa7fe4b22b55a6c7317241e90/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/682df9aaa7fe4b22b55a6c7317241e90/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/5a93947ef01508ef44d75101d54ac332/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/5a93947ef01508ef44d75101d54ac332/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/04cffb966a8469ae5fe50bc860b3b53e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/04cffb966a8469ae5fe50bc860b3b53e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/e6017900c684d2a4737adf4c46dff8e5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/e6017900c684d2a4737adf4c46dff8e5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/508c0d365324ba2f22cac2b4daddf774/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/508c0d365324ba2f22cac2b4daddf774/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/f17ab6190c9518b703ca3734a9288631/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/f17ab6190c9518b703ca3734a9288631/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/49be7894dec2f8c52e0eb926ab97ea6f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/49be7894dec2f8c52e0eb926ab97ea6f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/b65e940700964296ba621c3c23aace70/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/b65e940700964296ba621c3c23aace70/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6894899ef1df4e8d7cf02e8047b085cb/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/6894899ef1df4e8d7cf02e8047b085cb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/bae0e1032881e7938defb41a424b7b7b/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/bae0e1032881e7938defb41a424b7b7b/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/57476892f676d6effcfbabc98c291cd5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/57476892f676d6effcfbabc98c291cd5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/ea82b4e7d3f08e7d08821bc96e172aef/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/ea82b4e7d3f08e7d08821bc96e172aef/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/91416b206d560e047c787e4fe7c1eda2/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/91416b206d560e047c787e4fe7c1eda2/AndroidManifest.xml:20:5-44
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		ADDED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+		INJECTED from /home/labropu/Desktop/PMmeter/app/src/main/AndroidManifest.xml
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/74c0ca8bef715d0d7103fb920e1116e8/AndroidManifest.xml:24:13-58
