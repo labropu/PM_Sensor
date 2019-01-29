@@ -10,6 +10,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:text="PM Sensor app"
+        android:layout_alignParentTop="true"
         android:textSize="30sp" />
 
     <Button
@@ -17,8 +18,16 @@
         style="@style/button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/red_button"
         android:text="Connect" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

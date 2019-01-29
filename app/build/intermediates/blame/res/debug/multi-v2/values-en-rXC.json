@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/labropu/Desktop/PMmeter/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1a0f0ef623f7a85e0be902cbca5fdb1c/res/values-en-rXC/values-en-rXC.xml",

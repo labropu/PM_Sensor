@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PMmeter.iml" filepath="$PROJECT_DIR$/PMmeter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PM_Sensor.iml" filepath="$PROJECT_DIR$/PM_Sensor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

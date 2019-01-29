@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/labropu/Desktop/PMmeter/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml",
+            "outputFile": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/c52541875ca22fddac5e1af6bd789636/res/values-ne/values.xml",
