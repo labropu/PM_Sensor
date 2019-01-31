@@ -72,7 +72,7 @@ public class Main extends Activity {
 		
 		Button btn = (Button)findViewById(R.id.btn);
 		btn.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				scanLeDevice();
@@ -155,6 +155,7 @@ public class Main extends Activity {
 			}
 		};
 
+
 		mDialog = new AlertDialog.Builder(mContext).create();
 		mDialog.setOnKeyListener(keyListener);
 		mDialog.show();
@@ -214,4 +215,6 @@ public class Main extends Activity {
 
 		System.exit(0);
 	}
+
+
 }

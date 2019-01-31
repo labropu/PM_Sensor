@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import android.location.LocationManager;
 import java.io.File;
 import android.os.Environment;
 import com.google.android.gms.location.LocationCallback;
@@ -52,10 +51,7 @@ public class Chat extends Activity {
 	private Map<UUID, BluetoothGattCharacteristic> map = new HashMap<UUID, BluetoothGattCharacteristic>();
 
 	private FusedLocationProviderClient mFusedLocationClient;
-	private LocationManager locationManager;
 	private File textfile = new File(getPublicAlbumStorageDir("PM Sensor"), "PMdata.txt");
-	private String previousTime = "0";
-	private String previousTime1 = "0";
 	private String stringDate;
 	private String latitude = "";
 	private String longitude = "";
@@ -108,7 +104,6 @@ public class Chat extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second);
 
-		//prosthiki
 		mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 		LocationRequest mLocationRequest = new LocationRequest();
 		mLocationRequest.setInterval(30000);
@@ -226,15 +221,16 @@ public class Chat extends Activity {
 					fw.write(str);
 					str = "";
 				}
-				if (writeDate()) {
+				if (data.startsWith("a")) {
+					writeDate();
 					fw.write("\n");
 					fw.write(ts);
 					fw.write(stringDate);
-					fw.write(data); //appends the string to the file
-					tv.setText(n / 2 + " measurements since startup.");
+					fw.write(data.substring(1)); //appends the string to the file
+					tv.setText(n + " measurements since startup.");
 					n += 1;
 					tv.append("\n");
-					tv.append("PM2,5 and PM10 values are now: " + data);
+					tv.append("PM2,5 and PM10 values are now: " + data.substring(1));
 				} else {
 					fw.write(data); //appends the string to the file
 					fw.write(" ");
@@ -299,16 +295,10 @@ public class Chat extends Activity {
 	}
 
 
-	private boolean writeDate() {
+	private void writeDate() {
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
 		stringDate = sdf.format(c.getTime());
-		if (!previousTime1.equals(stringDate)) {
-			previousTime1 = stringDate;
-			return true;
-		}
-		else
-			return false;
 	}
 
 	public File getPublicAlbumStorageDir(String albumName) {
