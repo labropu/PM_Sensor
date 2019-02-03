@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.method.ScrollingMovementMethod;
@@ -38,6 +39,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 public class Chat extends Activity {
 	private final static String TAG = Chat.class.getSimpleName();
 
@@ -45,6 +51,7 @@ public class Chat extends Activity {
 	private TextView tv = null;
 	private EditText et = null;
 	private Button btn = null;
+	private Button btn2 = null;
 	private String mDeviceName;
 	private String mDeviceAddress;
 	private RBLService mBluetoothLeService;
@@ -58,6 +65,9 @@ public class Chat extends Activity {
 	private String str = "";
 	Long tsLong;
 	String ts = "";
+    boolean notvisible = true;
+    double datap = 1.25;
+    GraphView graph; // = (GraphView) findViewById(R.id.graph);
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -132,6 +142,26 @@ public class Chat extends Activity {
 				et.setText("");
 			}
 		});
+
+        graph = (GraphView) findViewById(R.id.graph);
+        graph.setVisibility(View.INVISIBLE);
+
+		btn2 = (Button) findViewById(R.id.graphbut);
+		btn2.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+			    if (notvisible) {
+                    graph.setVisibility(View.VISIBLE);
+                    notvisible = false;
+                }
+                else {
+                    graph.setVisibility(View.INVISIBLE);
+                    notvisible = true;
+                }
+            }
+		});
+
 
 		Intent intent = getIntent();
 
@@ -232,6 +262,7 @@ public class Chat extends Activity {
 					tv.append("\n");
 					tv.append("PM2,5 and PM10 values are now: " + data.substring(1));
 				} else {
+				    buildgraph();
 					fw.write(data); //appends the string to the file
 					fw.write(" ");
 					fw.write(latitude);
@@ -267,8 +298,41 @@ public class Chat extends Activity {
 
 	}
 
+    private void buildgraph() {
+        graph.removeAllSeries();
+        datap += 1.63;
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, datap),
+                new DataPoint(1, datap),
+                new DataPoint(2, datap),
+                new DataPoint(3, datap),
+                new DataPoint(4, datap)
+        });
+        series.setTitle("PM2,5");
+        series.setColor(Color.GREEN);
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(10);
+        series.setThickness(8);
+        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 2),
+                new DataPoint(1, 6),
+                new DataPoint(2, 4),
+                new DataPoint(3, 3),
+                new DataPoint(4, 7)
+        });
+        series1.setTitle("PM10");
+        series1.setColor(Color.BLUE);
+        series1.setDrawDataPoints(true);
+        series1.setDataPointsRadius(10);
+        series1.setThickness(8);
+        graph.addSeries(series);
+        graph.addSeries(series1);
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+    }
 
-	private void getGattService(BluetoothGattService gattService) {
+
+    private void getGattService(BluetoothGattService gattService) {
 		if (gattService == null)
 			return;
 
@@ -312,4 +376,5 @@ public class Chat extends Activity {
 		}
 		return path;
 	}
+
 }

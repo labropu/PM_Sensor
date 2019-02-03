@@ -703,6 +703,7 @@ id fill_horizontal
 id fill_vertical
 id forever
 id graph
+id graphbut
 id group_divider
 id home
 id homeAsUp
