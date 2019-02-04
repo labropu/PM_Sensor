@@ -66,8 +66,11 @@ public class Chat extends Activity {
 	Long tsLong;
 	String ts = "";
     boolean notvisible = true;
-    double datap = 1.25;
-    GraphView graph; // = (GraphView) findViewById(R.id.graph);
+    GraphView graph;
+    String[] pm = new String[3];
+	String[] humtemp = new String[3];
+	double[] pm25 = new double[6];
+	double[] pm10 = new double[6];
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -161,6 +164,11 @@ public class Chat extends Activity {
                 }
             }
 		});
+
+//		for (int i = 0; i < 5; i++) {
+//			pm25[i] = 0;
+//			pm10[i] = 0;
+//		}
 
 
 		Intent intent = getIntent();
@@ -256,11 +264,19 @@ public class Chat extends Activity {
 					fw.write("\n");
 					fw.write(ts);
 					fw.write(stringDate);
-					fw.write(data.substring(1)); //appends the string to the file
+					String data1 = data.substring(1);
+					fw.write(data1); //appends the string to the file
+					pm = data1.split(" ");
+					pm25[5] = Double.parseDouble(pm[0]);
+					pm10[5] = Double.parseDouble(pm[1]);
 					tv.setText(n + " measurements since startup.");
 					n += 1;
 					tv.append("\n");
-					tv.append("PM2,5 and PM10 values are now: " + data.substring(1));
+					tv.append("PM2,5 and PM10 values are now: " + data1);
+					tv.append("\n");
+					tv.append("pm2,5 value: " + pm25[5]);
+					tv.append("\n");
+					tv.append("pm10 value: " + pm10[5]);
 				} else {
 				    buildgraph();
 					fw.write(data); //appends the string to the file
@@ -268,6 +284,11 @@ public class Chat extends Activity {
 					fw.write(latitude);
 					fw.write(",");
 					fw.write(longitude);
+//					humtemp = data.split(" ");
+//					tv.append("\n");
+//					tv.append("humidity value: " + humtemp[1]);
+//					tv.append("\n");
+//					tv.append("temp value: " + humtemp[2]);
 				}
 				fw.close();
 
@@ -300,13 +321,16 @@ public class Chat extends Activity {
 
     private void buildgraph() {
         graph.removeAllSeries();
-        datap += 1.63;
+		for (int i = 0; i < 5; i++) {
+			pm25[i] = pm25[i+1];
+			pm10[i] = pm10[i+1];
+		}
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, datap),
-                new DataPoint(1, datap),
-                new DataPoint(2, datap),
-                new DataPoint(3, datap),
-                new DataPoint(4, datap)
+                new DataPoint(0, pm25[0]),
+                new DataPoint(1, pm25[1]),
+                new DataPoint(2, pm25[2]),
+                new DataPoint(3, pm25[3]),
+                new DataPoint(4, pm25[4])
         });
         series.setTitle("PM2,5");
         series.setColor(Color.GREEN);
@@ -314,11 +338,11 @@ public class Chat extends Activity {
         series.setDataPointsRadius(10);
         series.setThickness(8);
         LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 2),
-                new DataPoint(1, 6),
-                new DataPoint(2, 4),
-                new DataPoint(3, 3),
-                new DataPoint(4, 7)
+                new DataPoint(0, pm10[0]),
+                new DataPoint(1, pm10[1]),
+                new DataPoint(2, pm10[2]),
+                new DataPoint(3, pm10[3]),
+                new DataPoint(4, pm10[4])
         });
         series1.setTitle("PM10");
         series1.setColor(Color.BLUE);
