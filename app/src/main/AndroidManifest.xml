@@ -38,7 +38,7 @@
         <activity
             android:name="com.redbear.chat.Chat"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden|adjustPan" >
         </activity>
                 <activity
             android:name=".Device"
