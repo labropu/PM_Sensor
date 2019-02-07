@@ -1,6 +1,9 @@
 package com.redbear.chat;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -49,6 +52,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import static java.lang.StrictMath.max;
+
 public class Chat extends Activity {
 	private final static String TAG = Chat.class.getSimpleName();
 
@@ -70,12 +75,16 @@ public class Chat extends Activity {
 	private String str = "";
 	Long tsLong;
 	String ts = "";
-    boolean notvisible = true;
+    boolean notvisible = false;
     GraphView graph;
-    String[] pm = new String[3];
-	String[] humtemp = new String[3];
-	double[] pm25 = new double[11];
-	double[] pm10 = new double[11];
+    String[] pm = new String[2];
+	String[] humtemp = new String[2];
+	List<Double> pm25 = new ArrayList<>();
+	List<Double> pm10 = new ArrayList<>();
+	List<Date> date = new ArrayList<>();
+	SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
+	int count = 0;
+
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -148,11 +157,13 @@ public class Chat extends Activity {
 			public void onClick(View v) {
 				str = et.getText().toString();
 				et.setText("");
+				Toast.makeText(Chat.this, "Thank you for the information. Text \"" +str +"\" submitted to file.", Toast.LENGTH_LONG).show();
+
 			}
 		});
 
         graph = (GraphView) findViewById(R.id.graph);
-        graph.setVisibility(View.INVISIBLE);
+        graph.setVisibility(View.VISIBLE);
 
 		btn2 = (Button) findViewById(R.id.graphbut);
 		btn2.setOnClickListener(new OnClickListener() {
@@ -169,11 +180,6 @@ public class Chat extends Activity {
                 }
             }
 		});
-
-//		for (int i = 0; i < 5; i++) {
-//			pm25[i] = 0;
-//			pm10[i] = 0;
-//		}
 
 
 		Intent intent = getIntent();
@@ -272,28 +278,78 @@ public class Chat extends Activity {
 					String data1 = data.substring(1);
 					fw.write(data1); //appends the string to the file
 					pm = data1.split(" ");
-					pm25[10] = Double.parseDouble(pm[0]);
-					pm10[10] = Double.parseDouble(pm[1]);
+					pm25.add(Double.parseDouble(pm[0]));
+					pm10.add(Double.parseDouble(pm[1]));
+//					Toast.makeText(Chat.this, "Now PM2,5 is " +pm25.get(count) +" μg/m3 and PM10 is " +pm10.get(count) +" μg/m3", Toast.LENGTH_LONG).show();
 					tv.setText(n + " measurements since startup.");
 					n += 1;
 					tv.append("\n");
-					tv.append("PM2,5 and PM10 values are now: " + data1);
-//					tv.append("\n");
-//					tv.append("pm2,5 value: " + pm25[5]);
-//					tv.append("\n");
-//					tv.append("pm10 value: " + pm10[5]);
-				} else {
+					int i25 = 0;
+					int i10 = 0;
+					if (pm25.get(count)<10) {
+						i25=1;
+					}
+					else if (pm25.get(count)<20) {
+						i25=2;
+					}
+					else if (pm25.get(count)<25) {
+						i25=3;
+					}
+					else if (pm25.get(count)<50) {
+						i25=4;
+					}
+					else {
+						i25=5;
+					}
+					if (pm10.get(count)<20) {
+						i10=1;
+					}
+					else if (pm10.get(count)<35) {
+						i10=2;
+					}
+					else if (pm10.get(count)<50) {
+						i10=3;
+					}
+					else if (pm10.get(count)<100) {
+						i10=4;
+					}
+					else {
+						i10=5;
+					}
+					switch (max(i10,i25)) {
+						case 1:
+							tv.append("Air quality is VERY GOOD!");
+							break;
+						case 2:
+							tv.append("Air quality is FAIR.");
+							break;
+						case 3:
+							tv.append("Air quality is MODERATE.");
+							break;
+						case 4:
+							tv.append("Air quality is POOR.");
+							break;
+						case 5:
+							tv.append("Air quality is VERY POOR!");
+							break;
+						default:
+							tv.append("Couldn't get a measurement, please wait for a minute.");
+					}
+					tv.append(" (" +pm25.get(count) + "/" + pm10.get(count) +")");
+				} else if (data.startsWith("b")) {
 				    buildgraph();
-					fw.write(data); //appends the string to the file
+					String data1 = data.substring(1);
+					fw.write(" ");
+					fw.write(data1); //appends the string to the file
 					fw.write(" ");
 					fw.write(latitude);
 					fw.write(",");
 					fw.write(longitude);
-//					humtemp = data.split(" ");
-//					tv.append("\n");
-//					tv.append("humidity value: " + humtemp[1]);
-//					tv.append("\n");
-//					tv.append("temp value: " + humtemp[2]);
+					humtemp = data1.split(" ");
+					tv.append("\n");
+					tv.append("Humidity is " + humtemp[0] + " %");
+					tv.append("\n");
+					tv.append("Temperature is " + humtemp[1] +" \u00b0C");
 				}
 				fw.close();
 
@@ -326,22 +382,17 @@ public class Chat extends Activity {
 
     private void buildgraph() {
         graph.removeAllSeries();
-		for (int i = 0; i < 10; i++) {
-			pm25[i] = pm25[i+1];
-			pm10[i] = pm10[i+1];
+        count++;
+		DataPoint[] point1 = new DataPoint[count];
+		for (int i = 0; i < count; i++) {
+			point1[i] = new DataPoint(i, pm25.get(i));
 		}
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-				new DataPoint(1, pm25[0]),
-				new DataPoint(2, pm25[1]),
-				new DataPoint(3, pm25[2]),
-				new DataPoint(4, pm25[3]),
-				new DataPoint(5, pm25[4]),
-				new DataPoint(6, pm25[5]),
-				new DataPoint(7, pm25[6]),
-				new DataPoint(8, pm25[7]),
-				new DataPoint(9, pm25[8]),
-				new DataPoint(10, pm25[9])
-        });
+		DataPoint[] point2 = new DataPoint[count];
+		for (int i = 0; i < count; i++) {
+			point2[i] = new DataPoint(i, pm10.get(i));
+		}
+		LineGraphSeries<DataPoint> series = new LineGraphSeries<>(point1);
+		LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(point2);
         series.setTitle("PM2,5");
         series.setColor(Color.GREEN);
         series.setDrawDataPoints(true);
@@ -350,35 +401,33 @@ public class Chat extends Activity {
 		series.setOnDataPointTapListener(new OnDataPointTapListener() {
 			@Override
 			public void onTap(Series series, DataPointInterface dataPoint) {
-				Toast.makeText(Chat.this, "Series1: On Data Point clicked: "+dataPoint, Toast.LENGTH_SHORT).show();
+				Toast.makeText(Chat.this, "PM2,5 value is "+dataPoint.getY() +" μg/m3", Toast.LENGTH_LONG).show();
 			}
 		});
-        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(1, pm10[0]),
-                new DataPoint(2, pm10[1]),
-                new DataPoint(3, pm10[2]),
-                new DataPoint(4, pm10[3]),
-                new DataPoint(5, pm10[4]),
-				new DataPoint(6, pm10[5]),
-				new DataPoint(7, pm10[6]),
-				new DataPoint(8, pm10[7]),
-				new DataPoint(9, pm10[8]),
-				new DataPoint(10, pm10[9])
-        });
         series1.setTitle("PM10");
         series1.setColor(Color.BLUE);
         series1.setDrawDataPoints(true);
         series1.setDataPointsRadius(10);
         series1.setThickness(8);
+		series1.setOnDataPointTapListener(new OnDataPointTapListener() {
+			@Override
+			public void onTap(Series series, DataPointInterface dataPoint) {
+				Toast.makeText(Chat.this, "PM10 value is "+dataPoint.getY() +" μg/m3", Toast.LENGTH_LONG).show();
+			}
+		});
         graph.addSeries(series);
         graph.addSeries(series1);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMinX(1);
-        graph.getViewport().setScrollable(true); // enables horizontal scrolling
-        graph.getViewport().setScrollableY(true); // enables vertical scrolling
+        graph.getViewport().setMinX(0);
+		graph.getViewport().setMaxX(count-1);
+        graph.getViewport().setScalableY(true); // enables vertical scrolling
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getLegendRenderer().setVisible(true);
+		// as we use dates as labels, the human rounding to nice readable numbers
+		// is not necessary
+		graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+		graph.getGridLabelRenderer().setNumVerticalLabels(5);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
     }
 
@@ -412,8 +461,8 @@ public class Chat extends Activity {
 
 	private void writeDate() {
 		Calendar c = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
 		stringDate = sdf.format(c.getTime());
+		date.add(c.getTime());
 	}
 
 	public File getPublicAlbumStorageDir(String albumName) {
