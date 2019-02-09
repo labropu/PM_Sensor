@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
@@ -8,6 +9,9 @@ android {
         applicationId "com.redbear.chat"
         minSdkVersion 18
         targetSdkVersion 28
+
+        resValue "string", "google_maps_key",
+                (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
     }
 
     buildTypes {
@@ -18,12 +22,10 @@ android {
     }
 }
 
-
 dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.jjoe64:graphview:4.2.2'
-
-
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }

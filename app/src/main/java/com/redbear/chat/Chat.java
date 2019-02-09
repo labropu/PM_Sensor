@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -54,14 +53,35 @@ import com.jjoe64.graphview.series.Series;
 
 import static java.lang.StrictMath.max;
 
-public class Chat extends Activity {
+import android.support.v4.app.FragmentActivity;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class Chat extends FragmentActivity implements OnMapReadyCallback {
+
+	private GoogleMap mMap;
+
+	@Override
+	public void onMapReady(GoogleMap googleMap) {
+		mMap = googleMap;
+
+		// Add a marker in Sydney, Australia, and move the camera.
+		LatLng sydney = new LatLng(-34, 151);
+		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+		mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+	}
+
+
 	private final static String TAG = Chat.class.getSimpleName();
 
 	public static final String EXTRAS_DEVICE = "EXTRAS_DEVICE";
 	private TextView tv = null;
 	private EditText et = null;
 	private Button btn = null;
-	private Button btn2 = null;
 	private String mDeviceName;
 	private String mDeviceAddress;
 	private RBLService mBluetoothLeService;
@@ -73,17 +93,15 @@ public class Chat extends Activity {
 	private String latitude = "";
 	private String longitude = "";
 	private String str = "";
-	Long tsLong;
-	String ts = "";
-    boolean notvisible = false;
-    GraphView graph;
-    String[] pm = new String[2];
-	String[] humtemp = new String[2];
-	List<Double> pm25 = new ArrayList<>();
-	List<Double> pm10 = new ArrayList<>();
-	List<Date> date = new ArrayList<>();
-	SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
-	int count = 0;
+	private Long tsLong;
+	private String ts = "";
+	private GraphView graph;
+	private String[] pm, humtemp = new String[5];
+	private List<Double> pm10 = new ArrayList<>();
+	private List<Double> pm25 = new ArrayList<>();
+	private List<Date> date = new ArrayList<>();
+	private SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
+	private int count = 0;
 
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -115,6 +133,7 @@ public class Chat extends Activity {
 			final String action = intent.getAction();
 
 			if (RBLService.ACTION_GATT_DISCONNECTED.equals(action)) {
+				tv.setText("Bluetooth disconnected, please restart sensor and app.");
 			} else if (RBLService.ACTION_GATT_SERVICES_DISCOVERED
 					.equals(action)) {
 				tv.append("\n");
@@ -131,7 +150,14 @@ public class Chat extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second);
 
-		mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.map);
+		mapFragment.getMapAsync(this);
+
+		graph = (GraphView) findViewById(R.id.graph);
+
+
+	mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 		LocationRequest mLocationRequest = new LocationRequest();
 		mLocationRequest.setInterval(30000);
 		mLocationRequest.setFastestInterval(10000);
@@ -157,30 +183,11 @@ public class Chat extends Activity {
 			public void onClick(View v) {
 				str = et.getText().toString();
 				et.setText("");
-				Toast.makeText(Chat.this, "Thank you for the information. Text \"" +str +"\" submitted to file.", Toast.LENGTH_LONG).show();
-
+				if (!str.equals("")) {
+					Toast.makeText(Chat.this, "Thank you for the information. Text \"" + str + "\" submitted to file.", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
-
-        graph = (GraphView) findViewById(R.id.graph);
-        graph.setVisibility(View.VISIBLE);
-
-		btn2 = (Button) findViewById(R.id.graphbut);
-		btn2.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-			    if (notvisible) {
-                    graph.setVisibility(View.VISIBLE);
-                    notvisible = false;
-                }
-                else {
-                    graph.setVisibility(View.INVISIBLE);
-                    notvisible = true;
-                }
-            }
-		});
-
 
 		Intent intent = getIntent();
 
@@ -281,65 +288,17 @@ public class Chat extends Activity {
 					pm25.add(Double.parseDouble(pm[0]));
 					pm10.add(Double.parseDouble(pm[1]));
 //					Toast.makeText(Chat.this, "Now PM2,5 is " +pm25.get(count) +" μg/m3 and PM10 is " +pm10.get(count) +" μg/m3", Toast.LENGTH_LONG).show();
-					tv.setText(n + " measurements since startup.");
+					if (n>1) {
+						tv.setText(n + " measurements since startup.");
+					}
+					else tv.setText("First measurement arrived.");
 					n += 1;
 					tv.append("\n");
-					int i25 = 0;
-					int i10 = 0;
-					if (pm25.get(count)<10) {
-						i25=1;
-					}
-					else if (pm25.get(count)<20) {
-						i25=2;
-					}
-					else if (pm25.get(count)<25) {
-						i25=3;
-					}
-					else if (pm25.get(count)<50) {
-						i25=4;
-					}
-					else {
-						i25=5;
-					}
-					if (pm10.get(count)<20) {
-						i10=1;
-					}
-					else if (pm10.get(count)<35) {
-						i10=2;
-					}
-					else if (pm10.get(count)<50) {
-						i10=3;
-					}
-					else if (pm10.get(count)<100) {
-						i10=4;
-					}
-					else {
-						i10=5;
-					}
-					switch (max(i10,i25)) {
-						case 1:
-							tv.append("Air quality is VERY GOOD!");
-							break;
-						case 2:
-							tv.append("Air quality is FAIR.");
-							break;
-						case 3:
-							tv.append("Air quality is MODERATE.");
-							break;
-						case 4:
-							tv.append("Air quality is POOR.");
-							break;
-						case 5:
-							tv.append("Air quality is VERY POOR!");
-							break;
-						default:
-							tv.append("Couldn't get a measurement, please wait for a minute.");
-					}
-					tv.append(" (" +pm25.get(count) + "/" + pm10.get(count) +")");
+					chooseQuality();
+					count++;
 				} else if (data.startsWith("b")) {
-				    buildgraph();
+				    buildGraph();
 					String data1 = data.substring(1);
-					fw.write(" ");
 					fw.write(data1); //appends the string to the file
 					fw.write(" ");
 					fw.write(latitude);
@@ -380,55 +339,113 @@ public class Chat extends Activity {
 
 	}
 
-    private void buildgraph() {
-        graph.removeAllSeries();
-        count++;
-		DataPoint[] point1 = new DataPoint[count];
-		for (int i = 0; i < count; i++) {
-			point1[i] = new DataPoint(i, pm25.get(i));
+	private void chooseQuality() {
+		int i25 = 0;
+		int i10 = 0;
+		if (pm25.get(count)<10) {
+			i25=1;
 		}
-		DataPoint[] point2 = new DataPoint[count];
-		for (int i = 0; i < count; i++) {
-			point2[i] = new DataPoint(i, pm10.get(i));
+		else if (pm25.get(count)<20) {
+			i25=2;
 		}
-		LineGraphSeries<DataPoint> series = new LineGraphSeries<>(point1);
-		LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(point2);
-        series.setTitle("PM2,5");
-        series.setColor(Color.GREEN);
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
-        series.setThickness(8);
-		series.setOnDataPointTapListener(new OnDataPointTapListener() {
-			@Override
-			public void onTap(Series series, DataPointInterface dataPoint) {
-				Toast.makeText(Chat.this, "PM2,5 value is "+dataPoint.getY() +" μg/m3", Toast.LENGTH_LONG).show();
+		else if (pm25.get(count)<25) {
+			i25=3;
+		}
+		else if (pm25.get(count)<50) {
+			i25=4;
+		}
+		else {
+			i25=5;
+		}
+		if (pm10.get(count)<20) {
+			i10=1;
+		}
+		else if (pm10.get(count)<35) {
+			i10=2;
+		}
+		else if (pm10.get(count)<50) {
+			i10=3;
+		}
+		else if (pm10.get(count)<100) {
+			i10=4;
+		}
+		else {
+			i10=5;
+		}
+		switch (max(i10,i25)) {
+			case 1:
+				tv.append("Air quality is VERY GOOD!");
+				break;
+			case 2:
+				tv.append("Air quality is FAIR.");
+				break;
+			case 3:
+				tv.append("Air quality is MODERATE.");
+				break;
+			case 4:
+				tv.append("Air quality is POOR.");
+				break;
+			case 5:
+				tv.append("Air quality is VERY POOR!");
+				break;
+			default:
+				tv.append("Couldn't get a measurement, please wait for a minute.");
+		}
+		tv.append(" (" +pm25.get(count) + "/" + pm10.get(count) +")");
+	}
+
+	private void buildGraph() {
+        if (count>1) {
+			graph.removeAllSeries();
+			DataPoint[] point1 = new DataPoint[count];
+			for (int i = 0; i < count; i++) {
+				point1[i] = new DataPoint(i, pm25.get(i));
 			}
-		});
-        series1.setTitle("PM10");
-        series1.setColor(Color.BLUE);
-        series1.setDrawDataPoints(true);
-        series1.setDataPointsRadius(10);
-        series1.setThickness(8);
-		series1.setOnDataPointTapListener(new OnDataPointTapListener() {
-			@Override
-			public void onTap(Series series, DataPointInterface dataPoint) {
-				Toast.makeText(Chat.this, "PM10 value is "+dataPoint.getY() +" μg/m3", Toast.LENGTH_LONG).show();
+			DataPoint[] point2 = new DataPoint[count];
+			for (int i = 0; i < count; i++) {
+				point2[i] = new DataPoint(i, pm10.get(i));
 			}
-		});
-        graph.addSeries(series);
-        graph.addSeries(series1);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMinX(0);
-		graph.getViewport().setMaxX(count-1);
-        graph.getViewport().setScalableY(true); // enables vertical scrolling
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getLegendRenderer().setVisible(true);
-		// as we use dates as labels, the human rounding to nice readable numbers
-		// is not necessary
-		graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-		graph.getGridLabelRenderer().setNumVerticalLabels(5);
-        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+			LineGraphSeries<DataPoint> series = new LineGraphSeries<>(point1);
+			LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(point2);
+			series.setTitle("PM2,5");
+			series.setColor(Color.GREEN);
+			series.setDrawDataPoints(true);
+			series.setDataPointsRadius(10);
+			series.setThickness(8);
+			series.setOnDataPointTapListener(new OnDataPointTapListener() {
+				@Override
+				public void onTap(Series series, DataPointInterface dataPoint) {
+					Toast.makeText(Chat.this, "PM2,5 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_LONG).show();
+				}
+			});
+			series1.setTitle("PM10");
+			series1.setColor(Color.BLUE);
+			series1.setDrawDataPoints(true);
+			series1.setDataPointsRadius(10);
+			series1.setThickness(8);
+			series1.setOnDataPointTapListener(new OnDataPointTapListener() {
+				@Override
+				public void onTap(Series series, DataPointInterface dataPoint) {
+					Toast.makeText(Chat.this, "PM10 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_LONG).show();
+				}
+			});
+			graph.addSeries(series);
+			graph.addSeries(series1);
+			graph.getViewport().setMinY(0);
+//			graph.getViewport().setMaxY(50);
+			graph.getViewport().setMinX(0);
+			graph.getViewport().setMaxX(count - 1);
+			graph.getViewport().setScalableY(true); // enables vertical scrolling
+			graph.getViewport().setScalable(true);
+			graph.getViewport().setYAxisBoundsManual(true);
+			graph.getViewport().setXAxisBoundsManual(true);
+			graph.getLegendRenderer().setVisible(true);
+			// as we use dates as labels, the human rounding to nice readable numbers
+			// is not necessary
+			graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+			graph.getGridLabelRenderer().setNumVerticalLabels(4);
+			graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+		}
     }
 
 
