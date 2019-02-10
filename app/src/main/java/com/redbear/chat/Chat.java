@@ -73,6 +73,21 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 		LatLng sydney = new LatLng(-34, 151);
 		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+		updateLocationUI();
+
+	}
+
+	private void updateLocationUI() {
+		if (mMap == null) {
+			return;
+		}
+		try {
+			mMap.setMyLocationEnabled(true);
+			mMap.getUiSettings().setMyLocationButtonEnabled(true);
+		} catch (SecurityException e)  {
+			Log.e("Exception: %s", e.getMessage());
+		}
 	}
 
 
@@ -261,12 +276,15 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 			String data = new String(byteArray);
 			tsLong = System.currentTimeMillis()/1000;
 			ts = tsLong.toString();
+			LatLng newlocation = null;
+
 
 			if (location != null) {
 			    double lat = location.getLatitude();
 			    double lng = location.getLongitude();
 			    latitude = String.valueOf(lat);
 			    longitude = String.valueOf(lng);
+				newlocation = new LatLng(lat,lng);
 			}
 
 			try {
@@ -295,6 +313,10 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 					n += 1;
 					tv.append("\n");
 					chooseQuality();
+					if (location != null) {
+						mMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
+						mMap.addMarker(new MarkerOptions().position(newlocation).title("Marker in time: " +stringDate));
+					}
 					count++;
 				} else if (data.startsWith("b")) {
 				    buildGraph();
