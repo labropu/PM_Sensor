@@ -31,6 +31,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import java.io.File;
 import android.os.Environment;
 import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationRequest;
 
@@ -39,10 +40,11 @@ import java.text.SimpleDateFormat;
 import android.location.Location;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.maps.UiSettings;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.google.android.gms.maps.model.Marker;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -70,12 +72,11 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 		mMap = googleMap;
 
 		// Add a marker in Sydney, Australia, and move the camera.
-		LatLng sydney = new LatLng(-34, 151);
-		mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-		mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
+		LatLng patras = new LatLng(38.246639, 21.734573);
+		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
 		updateLocationUI();
-
+		UiSettings set = mMap.getUiSettings();
+		set.setZoomControlsEnabled(true);
 	}
 
 	private void updateLocationUI() {
@@ -117,6 +118,9 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 	private List<Date> date = new ArrayList<>();
 	private SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
 	private int count = 0;
+	LatLng newlocation = new LatLng(35,28);
+	Marker[] marker = new Marker[5000];
+	HashMap<LatLng, String> meMap = new HashMap<>();
 
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -174,10 +178,26 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 
 	mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 		LocationRequest mLocationRequest = new LocationRequest();
-		mLocationRequest.setInterval(30000);
+		mLocationRequest.setInterval(60000);
 		mLocationRequest.setFastestInterval(10000);
+		mLocationRequest.setSmallestDisplacement(50);
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-		LocationCallback mLocationCallback = new LocationCallback();
+		LocationCallback mLocationCallback = new LocationCallback(){
+			@Override
+			public void onLocationResult(LocationResult locationResult) {
+				if (locationResult == null) {
+					return;
+				}
+				for (Location location : locationResult.getLocations()) {
+					// Update UI with location data
+					double lat = location.getLatitude();
+					double lng = location.getLongitude();
+					latitude = String.valueOf(lat);
+					longitude = String.valueOf(lng);
+					newlocation = new LatLng(lat,lng);
+				}
+			};
+		};
 		// Register the listener with the Location Manager to receive location updates
 		try {
 			mFusedLocationClient.requestLocationUpdates(mLocationRequest,
@@ -264,28 +284,12 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 	private int n = 1;
 	private void displayData(final byte[] byteArray) {
 
-		try {
-
-			mFusedLocationClient.getLastLocation()
-					.addOnSuccessListener(this, new OnSuccessListener<Location>() {
-						@Override
-						public void onSuccess(Location location) {
-							// Got last known location. In some rare situations this can be null.
 
 		if (byteArray != null) {
 			String data = new String(byteArray);
 			tsLong = System.currentTimeMillis()/1000;
 			ts = tsLong.toString();
-			LatLng newlocation = null;
 
-
-			if (location != null) {
-			    double lat = location.getLatitude();
-			    double lng = location.getLongitude();
-			    latitude = String.valueOf(lat);
-			    longitude = String.valueOf(lng);
-				newlocation = new LatLng(lat,lng);
-			}
 
 			try {
 
@@ -313,10 +317,17 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 					n += 1;
 					tv.append("\n");
 					chooseQuality();
-					if (location != null) {
-						mMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
-						mMap.addMarker(new MarkerOptions().position(newlocation).title("Marker in time: " +stringDate));
+					if (meMap.containsKey(newlocation)) {
+						String updloc = meMap.get(newlocation);
+						Integer x = Integer.valueOf(updloc);
+						marker[x].remove();
+						marker[x] = mMap.addMarker(new MarkerOptions().position(newlocation).title(stringDate).snippet("PM2,5: " + pm25.get(count) + " μg/m3, PM10: " + pm10.get(count) + " μg/m3"));
 					}
+					else {
+						meMap.put(newlocation, "" + count);
+						marker[count] = mMap.addMarker(new MarkerOptions().position(newlocation).title(stringDate).snippet("PM2,5: " + pm25.get(count) + " μg/m3, PM10: " + pm10.get(count) + " μg/m3"));
+					}
+					mMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
 					count++;
 				} else if (data.startsWith("b")) {
 				    buildGraph();
@@ -352,14 +363,7 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 				tv.scrollTo(0, 0);
 		}
 	}
-					});
 
-		} catch (SecurityException e) {
-			// lets the user know there is a problem with the gps
-		}
-
-
-	}
 
 	private void chooseQuality() {
 		int i25 = 0;
