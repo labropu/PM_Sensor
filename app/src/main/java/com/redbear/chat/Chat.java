@@ -18,11 +18,17 @@ import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -63,41 +69,41 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class Chat extends FragmentActivity implements OnMapReadyCallback {
+public class Chat extends FragmentActivity {
 
-	private GoogleMap mMap;
+	private static GoogleMap mMap;
 
-	@Override
-	public void onMapReady(GoogleMap googleMap) {
-		mMap = googleMap;
+//	@Override
+//	public void onMapReady(GoogleMap googleMap) {
+//		mMap = googleMap;
+//
+//		// Add a marker in Sydney, Australia, and move the camera.
+//		LatLng patras = new LatLng(38.246639, 21.734573);
+//		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
+//		updateLocationUI();
+//		UiSettings set = mMap.getUiSettings();
+//		set.setZoomControlsEnabled(true);
+//	}
 
-		// Add a marker in Sydney, Australia, and move the camera.
-		LatLng patras = new LatLng(38.246639, 21.734573);
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
-		updateLocationUI();
-		UiSettings set = mMap.getUiSettings();
-		set.setZoomControlsEnabled(true);
-	}
-
-	private void updateLocationUI() {
-		if (mMap == null) {
-			return;
-		}
-		try {
-			mMap.setMyLocationEnabled(true);
-			mMap.getUiSettings().setMyLocationButtonEnabled(true);
-		} catch (SecurityException e)  {
-			Log.e("Exception: %s", e.getMessage());
-		}
-	}
+//	private void updateLocationUI() {
+//		if (mMap == null) {
+//			return;
+//		}
+//		try {
+//			mMap.setMyLocationEnabled(true);
+//			mMap.getUiSettings().setMyLocationButtonEnabled(true);
+//		} catch (SecurityException e)  {
+//			Log.e("Exception: %s", e.getMessage());
+//		}
+//	}
 
 
 	private final static String TAG = Chat.class.getSimpleName();
 
 	public static final String EXTRAS_DEVICE = "EXTRAS_DEVICE";
-	private TextView tv = null;
-	private EditText et = null;
-	private Button btn = null;
+	private static TextView tv = null;
+	private static EditText et = null;
+	private static Button btn = null;
 	private String mDeviceName;
 	private String mDeviceAddress;
 	private RBLService mBluetoothLeService;
@@ -108,10 +114,10 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 	private String stringDate;
 	private String latitude = "";
 	private String longitude = "";
-	private String str = "";
+	private static String str = "";
 	private Long tsLong;
 	private String ts = "";
-	private GraphView graph;
+	private static GraphView graph;
 	private String[] pm, humtemp = new String[5];
 	private List<Double> pm10 = new ArrayList<>();
 	private List<Double> pm25 = new ArrayList<>();
@@ -166,14 +172,18 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.AppTheme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second);
 
-		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-				.findFragmentById(R.id.map);
-		mapFragment.getMapAsync(this);
+		ViewPager viewPager = findViewById(R.id.viewPager);
+		viewPager.setOffscreenPageLimit(2);  //number of ViewPager pages that will be kept in storage while swiping
+		ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(viewPagerAdapter);
 
-		graph = (GraphView) findViewById(R.id.graph);
+//		SupportMapFragment mapFragment = (SupportMapFragment) this.getSupportFragmentManager()
+//				.findFragmentById(R.id.map);
+//		mapFragment.getMapAsync(this);
 
 
 	mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -207,22 +217,6 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 		catch (SecurityException e) {
 			// lets the user know there is a problem with the gps
 		}
-
-		tv = (TextView) findViewById(R.id.textView);
-		tv.setMovementMethod(ScrollingMovementMethod.getInstance());
-		et = (EditText) findViewById(R.id.editText);
-		btn = (Button) findViewById(R.id.send);
-		btn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				str = et.getText().toString();
-				et.setText("");
-				if (!str.equals("")) {
-					Toast.makeText(Chat.this, "Thank you for the information. Text \"" + str + "\" submitted to file.", Toast.LENGTH_LONG).show();
-				}
-			}
-		});
 
 		Intent intent = getIntent();
 
@@ -462,7 +456,7 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 			graph.getViewport().setMinX(0);
 			graph.getViewport().setMaxX(count - 1);
 			graph.getViewport().setScalableY(true); // enables vertical scrolling
-			graph.getViewport().setScalable(true);
+			graph.getViewport().setScalable(false);
 			graph.getViewport().setYAxisBoundsManual(true);
 			graph.getViewport().setXAxisBoundsManual(true);
 			graph.getLegendRenderer().setVisible(true);
@@ -518,6 +512,115 @@ public class Chat extends FragmentActivity implements OnMapReadyCallback {
 			Log.e("PM Sensor", "Directory not created, ERROR");
 		}
 		return path;
+	}
+
+	public class ViewPagerAdapter extends FragmentPagerAdapter {
+
+		public ViewPagerAdapter(FragmentManager manager) {
+			super(manager);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+				case 0:
+					return new FragmentA();
+				case 1:
+					return new FragmentB();
+				case 2:
+					return new FragmentC();
+			}
+			return new FragmentA();
+		}
+
+		@Override
+		public int getCount() {
+			return 3;  //number of Fragments inside the ViewPager
+		}
+
+	}
+
+	public static class FragmentA extends Fragment {
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+								 Bundle savedInstanceState) {
+			ViewGroup rootView = (ViewGroup) inflater.inflate(
+					R.layout.fragment1, container, false);
+
+			tv = (TextView) rootView.findViewById(R.id.textView);
+			tv.setMovementMethod(ScrollingMovementMethod.getInstance());
+			et = (EditText) rootView.findViewById(R.id.editText);
+			btn = (Button) rootView.findViewById(R.id.send);
+			btn.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					str = et.getText().toString();
+					et.setText("");
+					if (!str.equals("")) {
+						Toast.makeText(FragmentA.this.getActivity().getApplicationContext(), "Thank you for the information. Text \"" + str + "\" submitted to file.", Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+
+			return rootView;
+		}
+	}
+
+	public static class FragmentB extends Fragment {
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+								 Bundle savedInstanceState) {
+			ViewGroup rootView = (ViewGroup) inflater.inflate(
+					R.layout.fragment2, container, false);
+
+			graph = (GraphView) rootView.findViewById(R.id.graph);
+
+			return rootView;
+		}
+	}
+
+	public static class FragmentC extends Fragment implements OnMapReadyCallback  {
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+								 Bundle savedInstanceState) {
+			ViewGroup rootView = (ViewGroup) inflater.inflate(
+					R.layout.fragment3, container, false);
+
+			SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
+					.findFragmentById(R.id.map);
+			mapFragment.getMapAsync(this);
+
+			return rootView;
+		}
+
+		@Override
+		public void onMapReady(GoogleMap googleMap) {
+			mMap = googleMap;
+
+			// Add a marker in Sydney, Australia, and move the camera.
+			LatLng patras = new LatLng(38.246639, 21.734573);
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
+			updateLocationUI();
+			UiSettings set = mMap.getUiSettings();
+			set.setZoomControlsEnabled(true);
+		}
+
+		private void updateLocationUI() {
+			if (mMap == null) {
+				return;
+			}
+			try {
+				mMap.setMyLocationEnabled(true);
+				mMap.getUiSettings().setMyLocationButtonEnabled(true);
+			} catch (SecurityException e)  {
+				Log.e("Exception: %s", e.getMessage());
+			}
+		}
+
 	}
 
 }
