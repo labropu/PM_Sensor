@@ -628,6 +628,10 @@
         "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/menu/bletest.xml"
     },
     {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_redbear_medium.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/redbear_medium.png"
+    },
+    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/layout_second.xml.flat",
         "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/layout/second.xml"
     },

@@ -657,6 +657,7 @@ drawable notify_panel_notification_icon_bg
 drawable red_button
 drawable redbear
 drawable redbear_big
+drawable redbear_medium
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
+ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
 MERGED from [com.jjoe64:graphview:4.2.2] /home/labropu/.gradle/caches/transforms-1/files-1.1/graphview-4.2.2.aar/02ef6a35311bfb3e9c2fffcfc08fde72/AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/79b0b006c74cba6f6182916e89be1085/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-maps:16.1.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-maps-16.1.0.aar/51207a97e4f3ee8e57ff19d743332577/AndroidManifest.xml:17:1-38:12
@@ -39,9 +39,9 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/labropu/.gradle/cache
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/da041f7dc16c74023d1b5342fd0c3bbf/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/ed5989f07ef6e21f20f21152fcf0ee04/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] /home/labropu/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/eff8eb6145f7c0940053e51dcbcb016d/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
-INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
+INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:2:1-63:12
 	package
 		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:3:5-31
 		INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml
@@ -95,7 +95,7 @@ ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:19:5
 	android:name
 		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:19:19-67
 application
-ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:23:5-62:19
+ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:23:5-61:19
 MERGED from [com.jjoe64:graphview:4.2.2] /home/labropu/.gradle/caches/transforms-1/files-1.1/graphview-4.2.2.aar/02ef6a35311bfb3e9c2fffcfc08fde72/AndroidManifest.xml:11:5-12:19
 MERGED from [com.jjoe64:graphview:4.2.2] /home/labropu/.gradle/caches/transforms-1/files-1.1/graphview-4.2.2.aar/02ef6a35311bfb3e9c2fffcfc08fde72/AndroidManifest.xml:11:5-12:19
 MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-location-16.0.0.aar/79b0b006c74cba6f6182916e89be1085/AndroidManifest.xml:7:5-20
@@ -157,25 +157,23 @@ ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:44:1
 	android:name
 		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:44:27-74
 activity#com.redbear.chat.Chat
-ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:48:9-52:20
+ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:48:9-51:20
 	android:screenOrientation
 		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:50:13-49
-	android:windowSoftInputMode
-		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:51:13-64
 	android:name
 		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:49:13-49
 activity#com.redbear.chat.Device
-ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:54:9-57:20
+ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:53:9-56:20
 	android:theme
-		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:56:13-56
+		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:55:13-56
 	android:name
-		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:55:13-35
+		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:54:13-35
 service#com.redbear.chat.RBLService
-ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:59:9-61:38
+ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:58:9-60:38
 	android:enabled
-		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:61:13-35
+		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:60:13-35
 	android:name
-		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:60:13-55
+		ADDED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml:59:13-55
 uses-sdk
 INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/labropu/Desktop/PM_Sensor/app/src/main/AndroidManifest.xml

@@ -72,32 +72,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Chat extends FragmentActivity {
 
 	private static GoogleMap mMap;
-
-//	@Override
-//	public void onMapReady(GoogleMap googleMap) {
-//		mMap = googleMap;
-//
-//		// Add a marker in Sydney, Australia, and move the camera.
-//		LatLng patras = new LatLng(38.246639, 21.734573);
-//		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
-//		updateLocationUI();
-//		UiSettings set = mMap.getUiSettings();
-//		set.setZoomControlsEnabled(true);
-//	}
-
-//	private void updateLocationUI() {
-//		if (mMap == null) {
-//			return;
-//		}
-//		try {
-//			mMap.setMyLocationEnabled(true);
-//			mMap.getUiSettings().setMyLocationButtonEnabled(true);
-//		} catch (SecurityException e)  {
-//			Log.e("Exception: %s", e.getMessage());
-//		}
-//	}
-
-
 	private final static String TAG = Chat.class.getSimpleName();
 
 	public static final String EXTRAS_DEVICE = "EXTRAS_DEVICE";
@@ -122,7 +96,7 @@ public class Chat extends FragmentActivity {
 	private List<Double> pm10 = new ArrayList<>();
 	private List<Double> pm25 = new ArrayList<>();
 	private List<Date> date = new ArrayList<>();
-	private SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss ");
+	private SimpleDateFormat sdf = new SimpleDateFormat(" dd/MM/yyyy HH:mm ");
 	private int count = 0;
 	LatLng newlocation = new LatLng(35,28);
 	Marker[] marker = new Marker[5000];
@@ -181,11 +155,6 @@ public class Chat extends FragmentActivity {
 		ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(viewPagerAdapter);
 
-//		SupportMapFragment mapFragment = (SupportMapFragment) this.getSupportFragmentManager()
-//				.findFragmentById(R.id.map);
-//		mapFragment.getMapAsync(this);
-
-
 	mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 		LocationRequest mLocationRequest = new LocationRequest();
 		mLocationRequest.setInterval(60000);
@@ -224,6 +193,7 @@ public class Chat extends FragmentActivity {
 		mDeviceName = intent.getStringExtra(Device.EXTRA_DEVICE_NAME);
 
 		getActionBar().setTitle(mDeviceName);
+		getActionBar().setTitle("Disconnect");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Intent gattServiceIntent = new Intent(this, RBLService.class);
@@ -455,15 +425,14 @@ public class Chat extends FragmentActivity {
 //			graph.getViewport().setMaxY(50);
 			graph.getViewport().setMinX(0);
 			graph.getViewport().setMaxX(count - 1);
-			graph.getViewport().setScalableY(true); // enables vertical scrolling
-			graph.getViewport().setScalable(false);
+			graph.getViewport().setScrollableY(true); // enables vertical scrolling
 			graph.getViewport().setYAxisBoundsManual(true);
 			graph.getViewport().setXAxisBoundsManual(true);
 			graph.getLegendRenderer().setVisible(true);
 			// as we use dates as labels, the human rounding to nice readable numbers
 			// is not necessary
 			graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-			graph.getGridLabelRenderer().setNumVerticalLabels(4);
+			graph.getGridLabelRenderer().setNumVerticalLabels(8);
 			graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
 		}
     }

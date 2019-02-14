@@ -656,8 +656,9 @@ int drawable notify_panel_notification_icon_bg 0x7f060075
 int drawable red_button 0x7f060076
 int drawable redbear 0x7f060077
 int drawable redbear_big 0x7f060078
-int drawable tooltip_frame_dark 0x7f060079
-int drawable tooltip_frame_light 0x7f06007a
+int drawable redbear_medium 0x7f060079
+int drawable tooltip_frame_dark 0x7f06007a
+int drawable tooltip_frame_light 0x7f06007b
 int id ALT 0x7f070000
 int id CTRL 0x7f070001
 int id FUNCTION 0x7f070002

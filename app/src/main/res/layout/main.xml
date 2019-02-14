@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
         android:background="@drawable/red_button"
-        android:text="Connect" />
+        android:text="Search for sensor" />
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,8 +17,8 @@ import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,7 +46,14 @@ public class Main extends Activity {
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.main);
-		ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001); //Any number
+
+		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+        }
+        else{
+			showGPSDisabledAlertToUser();
+		}
 
 		if (!getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_BLUETOOTH_LE)) {
@@ -94,22 +100,6 @@ public class Main extends Activity {
 			}
 		});
 
-		scanLeDevice();
-
-		showRoundProcessDialog(Main.this, R.layout.loading_process_dialog_anim);
-
-		Timer mTimer = new Timer();
-		mTimer.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				Intent deviceListIntent = new Intent(getApplicationContext(),
-						Device.class);
-				startActivity(deviceListIntent);
-				mDialog.dismiss();
-			}
-		}, SCAN_PERIOD);
-
 		instance = this;
 
 		GraphView graph = (GraphView) findViewById(R.id.graph);
@@ -141,6 +131,7 @@ public class Main extends Activity {
         graph.addSeries(series1);
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
 	}
 
 	public void showRoundProcessDialog(Context mContext, int layout) {
@@ -160,7 +151,6 @@ public class Main extends Activity {
 		mDialog = new AlertDialog.Builder(mContext).create();
 		mDialog.setOnKeyListener(keyListener);
 		mDialog.show();
-		// 娉ㄦ��姝ゅ��瑕���惧��show涔���� ������浼���ュ��甯�
 		mDialog.setContentView(layout);
 	}
 
@@ -217,5 +207,27 @@ public class Main extends Activity {
 		System.exit(0);
 	}
 
+	private void showGPSDisabledAlertToUser(){
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		alertDialogBuilder.setMessage("It looks like GPS is disabled in your device. Please enable it.")
+				.setCancelable(false)
+				.setPositiveButton("Set Location ON in Settings",
+						new DialogInterface.OnClickListener(){
+							public void onClick(DialogInterface dialog, int id){
+								Intent callGPSSettingIntent = new Intent(
+										android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+								startActivity(callGPSSettingIntent);
+							}
+						});
+		alertDialogBuilder.setNegativeButton("I don't want, exit the app.",
+				new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int id){
+						dialog.cancel();
+						finish();
+					}
+				});
+		AlertDialog alert = alertDialogBuilder.create();
+		alert.show();
+	}
 
 }

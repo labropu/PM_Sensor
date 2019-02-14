@@ -2667,8 +2667,9 @@ public final class R {
     public static final int red_button=0x7f060076;
     public static final int redbear=0x7f060077;
     public static final int redbear_big=0x7f060078;
-    public static final int tooltip_frame_dark=0x7f060079;
-    public static final int tooltip_frame_light=0x7f06007a;
+    public static final int redbear_medium=0x7f060079;
+    public static final int tooltip_frame_dark=0x7f06007a;
+    public static final int tooltip_frame_light=0x7f06007b;
   }
   public static final class id {
     public static final int ALT=0x7f070000;
