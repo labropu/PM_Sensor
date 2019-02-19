@@ -1,4 +1,4 @@
-#Thu Feb 14 20:03:03 EET 2019
+#Mon Feb 18 19:23:35 EET 2019
 base.0=/home/labropu/Desktop/PM_Sensor/app/build/intermediates/transforms/dexMerger/debug/8
 path.0=classes.dex
 renamed.0=classes.dex

@@ -33,6 +33,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import java.io.File;
 import android.os.Environment;
@@ -50,6 +53,7 @@ import com.google.android.gms.maps.UiSettings;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Marker;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
@@ -69,6 +73,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Chat extends FragmentActivity {
 
 	private static GoogleMap mMap;
@@ -76,6 +88,7 @@ public class Chat extends FragmentActivity {
 
 	public static final String EXTRAS_DEVICE = "EXTRAS_DEVICE";
 	private static TextView tv = null;
+	private static TextView tv1 = null;
 	private static EditText et = null;
 	private static Button btn = null;
 	private String mDeviceName;
@@ -116,7 +129,7 @@ public class Chat extends FragmentActivity {
 			}
 			// Automatically connects to the device upon successful start-up
 			// initialization.
-			tv.setText("Bluetooth initialized");
+			tv.setText("Bluetooth initialized\n\nSensor is " +mDeviceName);
 			mBluetoothLeService.connect(mDeviceAddress);
 		}
 
@@ -135,8 +148,8 @@ public class Chat extends FragmentActivity {
 				tv.setText("Bluetooth disconnected, please restart sensor and app.");
 			} else if (RBLService.ACTION_GATT_SERVICES_DISCOVERED
 					.equals(action)) {
-				tv.append("\n");
-				tv.append("Data are being collected");
+				tv.append("\n\n");
+				tv.append("Data are being collected\nPlease wait 1 minute for the next measurement...");
 				getGattService(mBluetoothLeService.getSupportedGattService());
 			} else if (RBLService.ACTION_DATA_AVAILABLE.equals(action)) {
 				displayData(intent.getByteArrayExtra(RBLService.EXTRA_DATA));
@@ -159,7 +172,7 @@ public class Chat extends FragmentActivity {
 		LocationRequest mLocationRequest = new LocationRequest();
 		mLocationRequest.setInterval(60000);
 		mLocationRequest.setFastestInterval(10000);
-		mLocationRequest.setSmallestDisplacement(50);
+		mLocationRequest.setSmallestDisplacement(70);
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		LocationCallback mLocationCallback = new LocationCallback(){
 			@Override
@@ -192,12 +205,54 @@ public class Chat extends FragmentActivity {
 		mDeviceAddress = intent.getStringExtra(Device.EXTRA_DEVICE_ADDRESS);
 		mDeviceName = intent.getStringExtra(Device.EXTRA_DEVICE_NAME);
 
-		getActionBar().setTitle(mDeviceName);
 		getActionBar().setTitle("Disconnect");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Intent gattServiceIntent = new Intent(this, RBLService.class);
 		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+
+		// Instantiate the RequestQueue.
+		RequestQueue queue = Volley.newRequestQueue(this);
+		String url = "https://api.hackair.eu/hackair_data?location=28.805640%2C%2010.816884%7C%2019.878043%2C%2040.517963%20";
+
+		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+				(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+						try {
+							JSONArray jArray = response.getJSONArray("measurements");
+							for (int i = 0; i < jArray.length(); i++) {
+								JSONObject jOBJ = jArray.getJSONObject(i);
+								String json_date = jOBJ.getString("date_str");
+								JSONObject locOBJ = jOBJ.getJSONObject("loc");
+								JSONArray locArray = locOBJ.getJSONArray("coordinates");
+								String json_lat = locArray.getString(0);
+								String json_lng = locArray.getString(1);
+								Double hlat = Double.parseDouble(json_lat);
+								Double hlng = Double.parseDouble(json_lng);
+								LatLng hackairlocation = new LatLng(hlat,hlng);
+								JSONObject valueOBJ = jOBJ.getJSONObject("pollutant_q");
+								String json_pm = valueOBJ.getString("name");
+								String json_pmvalue = valueOBJ.getString("value");
+								mMap.addMarker(new MarkerOptions().position(hackairlocation).title(json_date).snippet(json_pm +": " +json_pmvalue +" μg/m3").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+							}
+						} catch (JSONException e) {
+							Log.e("MYAPP", "unexpected JSON exception", e);
+							// Do something to recover ... or kill the app.
+						}
+					}
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						// TODO: Handle error
+
+					}
+				});
+
+		// Add the request to the RequestQueue.
+		queue.add(jsonObjectRequest);
 
 	}
 
@@ -275,11 +330,11 @@ public class Chat extends FragmentActivity {
 					pm10.add(Double.parseDouble(pm[1]));
 //					Toast.makeText(Chat.this, "Now PM2,5 is " +pm25.get(count) +" μg/m3 and PM10 is " +pm10.get(count) +" μg/m3", Toast.LENGTH_LONG).show();
 					if (n>1) {
-						tv.setText(n + " measurements since startup.");
+						tv.setText(n + " measurements since startup\n(1 per minute)");
 					}
-					else tv.setText("First measurement arrived.");
+					else tv.setText("First measurement arrived:");
 					n += 1;
-					tv.append("\n");
+					tv.append("\n\n");
 					chooseQuality();
 					if (meMap.containsKey(newlocation)) {
 						String updloc = meMap.get(newlocation);
@@ -302,7 +357,7 @@ public class Chat extends FragmentActivity {
 					fw.write(",");
 					fw.write(longitude);
 					humtemp = data1.split(" ");
-					tv.append("\n");
+					tv.append("\n\n");
 					tv.append("Humidity is " + humtemp[0] + " %");
 					tv.append("\n");
 					tv.append("Temperature is " + humtemp[1] +" \u00b0C");
@@ -381,7 +436,7 @@ public class Chat extends FragmentActivity {
 			default:
 				tv.append("Couldn't get a measurement, please wait for a minute.");
 		}
-		tv.append(" (" +pm25.get(count) + "/" + pm10.get(count) +")");
+		tv.append("\nCurrent value of PM2,5 and PM10 concentration is " +pm25.get(count) + " and " + pm10.get(count) +" μg/m3 respectively.");
 	}
 
 	private void buildGraph() {
@@ -405,7 +460,7 @@ public class Chat extends FragmentActivity {
 			series.setOnDataPointTapListener(new OnDataPointTapListener() {
 				@Override
 				public void onTap(Series series, DataPointInterface dataPoint) {
-					Toast.makeText(Chat.this, "PM2,5 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_LONG).show();
+					Toast.makeText(Chat.this, "PM2,5 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_SHORT).show();
 				}
 			});
 			series1.setTitle("PM10");
@@ -416,16 +471,17 @@ public class Chat extends FragmentActivity {
 			series1.setOnDataPointTapListener(new OnDataPointTapListener() {
 				@Override
 				public void onTap(Series series, DataPointInterface dataPoint) {
-					Toast.makeText(Chat.this, "PM10 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_LONG).show();
+					Toast.makeText(Chat.this, "PM10 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_SHORT).show();
 				}
 			});
 			graph.addSeries(series);
 			graph.addSeries(series1);
 			graph.getViewport().setMinY(0);
-//			graph.getViewport().setMaxY(50);
+//			graph.getViewport().setMaxY(80);
 			graph.getViewport().setMinX(0);
 			graph.getViewport().setMaxX(count - 1);
-			graph.getViewport().setScrollableY(true); // enables vertical scrolling
+			graph.getViewport().setScalableY(true); // enables vertical scrolling
+			graph.getViewport().setScalable(true);
 			graph.getViewport().setYAxisBoundsManual(true);
 			graph.getViewport().setXAxisBoundsManual(true);
 			graph.getLegendRenderer().setVisible(true);
@@ -495,9 +551,9 @@ public class Chat extends FragmentActivity {
 				case 0:
 					return new FragmentA();
 				case 1:
-					return new FragmentB();
-				case 2:
 					return new FragmentC();
+				case 2:
+					return new FragmentB();
 			}
 			return new FragmentA();
 		}
@@ -505,6 +561,20 @@ public class Chat extends FragmentActivity {
 		@Override
 		public int getCount() {
 			return 3;  //number of Fragments inside the ViewPager
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			switch (position) {
+				case 0:
+					return "Info and Live Data";
+				case 1:
+					return "Map of measurements";
+				case 2:
+					return "Graph presentation";
+			}
+
+			return null;
 		}
 
 	}
@@ -558,6 +628,8 @@ public class Chat extends FragmentActivity {
 								 Bundle savedInstanceState) {
 			ViewGroup rootView = (ViewGroup) inflater.inflate(
 					R.layout.fragment3, container, false);
+			tv1 = (TextView) rootView.findViewById(R.id.textView1);
+			tv1.setText("Blue = data from hackair platform\nOrange = my sensor");
 
 			SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
 					.findFragmentById(R.id.map);
@@ -572,7 +644,7 @@ public class Chat extends FragmentActivity {
 
 			// Add a marker in Sydney, Australia, and move the camera.
 			LatLng patras = new LatLng(38.246639, 21.734573);
-			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 14));
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(patras, 6));
 			updateLocationUI();
 			UiSettings set = mMap.getUiSettings();
 			set.setZoomControlsEnabled(true);

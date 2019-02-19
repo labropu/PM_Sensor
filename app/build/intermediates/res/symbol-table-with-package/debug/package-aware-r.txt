@@ -760,6 +760,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id pageloading
+id pager_tab_strip
 id parentPanel
 id progress_circular
 id progress_horizontal
@@ -808,6 +809,7 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textView
+id textView1
 id time
 id title
 id titleDividerNoCustom
