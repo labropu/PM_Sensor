@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -629,7 +630,9 @@ public class Chat extends FragmentActivity {
 			ViewGroup rootView = (ViewGroup) inflater.inflate(
 					R.layout.fragment3, container, false);
 			tv1 = (TextView) rootView.findViewById(R.id.textView1);
-			tv1.setText("Blue = data from hackair platform\nOrange = my sensor");
+			String red = "<font color='#FF0000'>Red</font>";
+			String blue = "<font color='#0000FF'>Blue</font>";
+			tv1.setText(Html.fromHtml(blue + " = data from hackair platform (needs internet!)\n" + red + " = my sensor"));
 
 			SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
 					.findFragmentById(R.id.map);
