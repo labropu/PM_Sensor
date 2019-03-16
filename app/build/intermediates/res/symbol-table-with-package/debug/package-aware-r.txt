@@ -620,6 +620,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable baselinesend24px
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -658,6 +659,7 @@ drawable red_button
 drawable redbear
 drawable redbear_big
 drawable redbear_medium
+drawable send512
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -739,6 +741,7 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id imageView1
 id info
 id italic
 id left
@@ -785,6 +788,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id send
+id send1
 id shortcut
 id showCustom
 id showHome
@@ -810,6 +814,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textView
 id textView1
+id textView2
+id textView3
 id time
 id title
 id titleDividerNoCustom
@@ -945,6 +951,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string edittext_hint
 string google_maps_key
 string search_menu_title
 string searching

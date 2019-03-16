@@ -115,6 +115,8 @@ public class Chat extends FragmentActivity {
 	LatLng newlocation = new LatLng(35,28);
 	Marker[] marker = new Marker[5000];
 	HashMap<LatLng, String> meMap = new HashMap<>();
+	RequestQueue queue;
+	JsonObjectRequest jsonObjectRequest;
 
 
 	private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -213,10 +215,10 @@ public class Chat extends FragmentActivity {
 		bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
 
 		// Instantiate the RequestQueue.
-		RequestQueue queue = Volley.newRequestQueue(this);
+		queue = Volley.newRequestQueue(this);
 		String url = "https://api.hackair.eu/hackair_data?location=28.805640%2C%2010.816884%7C%2019.878043%2C%2040.517963%20";
 
-		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+		jsonObjectRequest = new JsonObjectRequest
 				(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
 					@Override
@@ -226,17 +228,22 @@ public class Chat extends FragmentActivity {
 							for (int i = 0; i < jArray.length(); i++) {
 								JSONObject jOBJ = jArray.getJSONObject(i);
 								String json_date = jOBJ.getString("date_str");
+								json_date = sdf.format(new Date(Long.parseLong(json_date)));
 								JSONObject locOBJ = jOBJ.getJSONObject("loc");
 								JSONArray locArray = locOBJ.getJSONArray("coordinates");
 								String json_lat = locArray.getString(0);
 								String json_lng = locArray.getString(1);
 								Double hlat = Double.parseDouble(json_lat);
 								Double hlng = Double.parseDouble(json_lng);
-								LatLng hackairlocation = new LatLng(hlat,hlng);
 								JSONObject valueOBJ = jOBJ.getJSONObject("pollutant_q");
 								String json_pm = valueOBJ.getString("name");
 								String json_pmvalue = valueOBJ.getString("value");
-								mMap.addMarker(new MarkerOptions().position(hackairlocation).title(json_date).snippet(json_pm +": " +json_pmvalue +" μg/m3").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+								if (json_pm.startsWith("PM10")) {
+									hlat = hlat + 0.0001;
+								}
+								LatLng hackairlocation = new LatLng(hlat,hlng);
+								mMap.addMarker(new MarkerOptions().position(hackairlocation).title(json_date).snippet(json_pm + ": " + json_pmvalue + " μg/m3").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
 							}
 						} catch (JSONException e) {
 							Log.e("MYAPP", "unexpected JSON exception", e);
@@ -304,8 +311,14 @@ public class Chat extends FragmentActivity {
 	private int n = 1;
 	private void displayData(final byte[] byteArray) {
 
+//		if (isNetworkAvailable() && netindex) {
+//			queue.add(jsonObjectRequest);
+//			netindex = false;
+//		}
+
 
 		if (byteArray != null) {
+			queue.add(jsonObjectRequest);
 			String data = new String(byteArray);
 			tsLong = System.currentTimeMillis()/1000;
 			ts = tsLong.toString();

@@ -16,7 +16,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -25,11 +24,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
-
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.LegendRenderer;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class Main extends Activity {
 	private BluetoothAdapter mBluetoothAdapter;
@@ -101,36 +95,6 @@ public class Main extends Activity {
 		});
 
 		instance = this;
-
-		GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-				new DataPoint(0, 1),
-				new DataPoint(1, 5),
-				new DataPoint(2, 3),
-				new DataPoint(3, 2),
-				new DataPoint(4, 6)
-		});
-        series.setTitle("PM2,5");
-        series.setColor(Color.GREEN);
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
-        series.setThickness(8);
-        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 2),
-                new DataPoint(1, 6),
-                new DataPoint(2, 4),
-                new DataPoint(3, 3),
-                new DataPoint(4, 7)
-        });
-        series1.setTitle("PM10");
-        series1.setColor(Color.BLUE);
-        series1.setDrawDataPoints(true);
-        series1.setDataPointsRadius(10);
-        series1.setThickness(8);
-		graph.addSeries(series);
-        graph.addSeries(series1);
-        graph.getLegendRenderer().setVisible(true);
-        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
 
 	}
 

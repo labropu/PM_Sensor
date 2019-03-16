@@ -4,5 +4,6 @@
     <string name="app_name">PM Sensor app</string>
     <string name="action_settings">Settings</string>
     <string name="searching">Searching....</string>
+    <string name="edittext_hint"><font size="14">If there is something important we should know about the environment status please comment</font></string>
 
 </resources>
