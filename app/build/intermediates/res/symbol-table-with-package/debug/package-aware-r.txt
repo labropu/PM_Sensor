@@ -642,6 +642,8 @@ drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable humidity
+drawable humidityresized
 drawable launch_screen
 drawable notification_action_background
 drawable notification_bg
@@ -655,11 +657,17 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable pm10
+drawable pm10resized
+drawable pm25
+drawable pm25resized
 drawable red_button
 drawable redbear
 drawable redbear_big
 drawable redbear_medium
 drawable send512
+drawable temperature
+drawable temperatureresized
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -744,6 +752,10 @@ id image
 id imageView1
 id info
 id italic
+id layout1
+id layout2
+id layout3
+id layout4
 id left
 id light
 id line1
@@ -789,6 +801,9 @@ id search_voice_btn
 id select_dialog_listview
 id send
 id send1
+id send2
+id send3
+id send4
 id shortcut
 id showCustom
 id showHome
@@ -816,6 +831,8 @@ id textView
 id textView1
 id textView2
 id textView3
+id textView4
+id textView5
 id time
 id title
 id titleDividerNoCustom

@@ -90,6 +90,10 @@ public class Chat extends FragmentActivity {
 	public static final String EXTRAS_DEVICE = "EXTRAS_DEVICE";
 	private static TextView tv = null;
 	private static TextView tv1 = null;
+	private static TextView tv2 = null;
+	private static TextView tv3 = null;
+	private static TextView tv4 = null;
+	private static TextView tv5 = null;
 	private static EditText et = null;
 	private static Button btn = null;
 	private String mDeviceName;
@@ -228,7 +232,9 @@ public class Chat extends FragmentActivity {
 							for (int i = 0; i < jArray.length(); i++) {
 								JSONObject jOBJ = jArray.getJSONObject(i);
 								String json_date = jOBJ.getString("date_str");
-								json_date = sdf.format(new Date(Long.parseLong(json_date)));
+								if (json_date.matches("[0-9]+")) {
+									json_date = sdf.format(new Date(Long.parseLong(json_date)));
+								}
 								JSONObject locOBJ = jOBJ.getJSONObject("loc");
 								JSONArray locArray = locOBJ.getJSONArray("coordinates");
 								String json_lat = locArray.getString(0);
@@ -311,11 +317,6 @@ public class Chat extends FragmentActivity {
 	private int n = 1;
 	private void displayData(final byte[] byteArray) {
 
-//		if (isNetworkAvailable() && netindex) {
-//			queue.add(jsonObjectRequest);
-//			netindex = false;
-//		}
-
 
 		if (byteArray != null) {
 			queue.add(jsonObjectRequest);
@@ -371,10 +372,12 @@ public class Chat extends FragmentActivity {
 					fw.write(",");
 					fw.write(longitude);
 					humtemp = data1.split(" ");
-					tv.append("\n\n");
-					tv.append("Humidity is " + humtemp[0] + " %");
-					tv.append("\n");
-					tv.append("Temperature is " + humtemp[1] +" \u00b0C");
+					tv4.setText(humtemp[0] + " %");
+					tv5.setText(humtemp[1] +" \u00b0C");
+//					tv.append("\n\n");
+//					tv.append("Humidity is " + humtemp[0] + " %");
+//					tv.append("\n");
+//					tv.append("Temperature is " + humtemp[1] +" \u00b0C");
 				}
 				fw.close();
 
@@ -450,7 +453,9 @@ public class Chat extends FragmentActivity {
 			default:
 				tv.append("Couldn't get a measurement, please wait for a minute.");
 		}
-		tv.append("\nCurrent value of PM2,5 and PM10 concentration is " +pm25.get(count) + " and " + pm10.get(count) +" μg/m3 respectively.");
+		tv2.setText(pm25.get(count) + " μg/m3");
+		tv3.setText(pm10.get(count) + " μg/m3");
+//		tv.append("\nCurrent value of PM2,5 and PM10 concentration is " +pm25.get(count) + " and " + pm10.get(count) +" μg/m3 respectively.");
 	}
 
 	private void buildGraph() {
@@ -602,6 +607,10 @@ public class Chat extends FragmentActivity {
 					R.layout.fragment1, container, false);
 
 			tv = (TextView) rootView.findViewById(R.id.textView);
+			tv2 = (TextView) rootView.findViewById(R.id.send1);
+			tv3 = (TextView) rootView.findViewById(R.id.send2);
+			tv4 = (TextView) rootView.findViewById(R.id.send3);
+			tv5 = (TextView) rootView.findViewById(R.id.send4);
 			tv.setMovementMethod(ScrollingMovementMethod.getInstance());
 			et = (EditText) rootView.findViewById(R.id.editText);
 			btn = (Button) rootView.findViewById(R.id.send);

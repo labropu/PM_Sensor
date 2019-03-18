@@ -5,39 +5,74 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
     plugin-version="3.3.0"
-    timestamp="1552768909559"
+    timestamp="1552949386980"
     token="4415482746434197220"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="500" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="76" />
+        duration="0" />
     <task
         name="verifier"
-        duration="15" />
+        duration="0" />
 
-    <artifact
-        location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
-        type="SPLIT" />
     <artifact
         location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1552756863782"
-        verifier="FULL_BUILD_REQUESTED" >
+        timestamp="1552938938447"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
         <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1552947979891"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
@@ -45,13 +80,13 @@
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
@@ -60,65 +95,13 @@
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1552757860801"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1552764731547"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1552768691844"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1552768909559"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1552949386980"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/home/labropu/Desktop/PM_Sensor/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />

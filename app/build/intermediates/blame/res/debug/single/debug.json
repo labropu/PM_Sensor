@@ -76,6 +76,10 @@
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/2837199eaf1022cfae6cf85121f0ec0b/res/layout/notification_action_tombstone.xml"
     },
     {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_pm10.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/pm10.png"
+    },
+    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_dark.xml.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/color/abc_primary_text_material_dark.xml"
     },
@@ -560,12 +564,12 @@
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xxhdpi-v4/abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
-        "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
-    },
-    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-ldrtl-xxhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
+        "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -688,6 +692,10 @@
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xxhdpi-v4/abc_ic_star_half_black_36dp.png"
     },
     {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_humidityresized.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/humidityresized.png"
+    },
+    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_abc_btn_check_material.xml.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable/abc_btn_check_material.xml"
     },
@@ -782,6 +790,10 @@
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_checkbox.xml.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_temperature.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/temperature.png"
     },
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_text_light.xml.flat",
@@ -880,8 +892,16 @@
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_pm25.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/pm25.png"
+    },
+    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_temperatureresized.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/temperatureresized.png"
     },
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_abc_btn_colored_material.xml.flat",
@@ -1068,6 +1088,10 @@
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/1bbb81bddd192842eb0c52be76a6de2f/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_pm10resized.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/pm10resized.png"
+    },
+    {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_black_36dp.png.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/drawable-xhdpi-v4/abc_ic_star_black_36dp.png"
     },
@@ -1174,6 +1198,10 @@
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/anim_abc_fade_out.xml.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e0594378550efa5255ae962317f89ba2/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_pm25resized.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/pm25resized.png"
     },
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -1478,6 +1506,10 @@
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_tint.xml.flat",
         "source": "/home/labropu/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/a8e2c0931390bbd1e9d6fef7089b3894/res/color/common_google_signin_btn_tint.xml"
+    },
+    {
+        "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/drawable_humidity.png.flat",
+        "source": "/home/labropu/Desktop/PM_Sensor/app/src/main/res/drawable/humidity.png"
     },
     {
         "merged": "/home/labropu/Desktop/PM_Sensor/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
