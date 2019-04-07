@@ -621,6 +621,7 @@ drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable baselinesend24px
+drawable border
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -640,11 +641,13 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable google_maps_marker
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable humidity
 drawable humidityresized
 drawable launch_screen
+drawable map_pin_blue
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -760,6 +763,8 @@ id left
 id light
 id line1
 id line3
+id link1
+id link2
 id listMode
 id listView
 id list_item
@@ -970,6 +975,8 @@ string common_signin_button_text
 string common_signin_button_text_long
 string edittext_hint
 string google_maps_key
+string link1
+string link2
 string search_menu_title
 string searching
 string status_bar_notification_info_overflow

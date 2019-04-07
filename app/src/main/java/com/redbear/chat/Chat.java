@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -93,7 +94,6 @@ public class Chat extends FragmentActivity {
 	private static TextView tv2 = null;
 	private static TextView tv3 = null;
 	private static TextView tv4 = null;
-	private static TextView tv5 = null;
 	private static EditText et = null;
 	private static Button btn = null;
 	private String mDeviceName;
@@ -136,7 +136,7 @@ public class Chat extends FragmentActivity {
 			}
 			// Automatically connects to the device upon successful start-up
 			// initialization.
-			tv.setText("Bluetooth initialized\n\nSensor is " +mDeviceName);
+			tv.setText("Bluetooth initialized\nSensor is " +mDeviceName);
 			mBluetoothLeService.connect(mDeviceAddress);
 		}
 
@@ -152,10 +152,10 @@ public class Chat extends FragmentActivity {
 			final String action = intent.getAction();
 
 			if (RBLService.ACTION_GATT_DISCONNECTED.equals(action)) {
-				tv.setText("Bluetooth disconnected, please restart sensor and app.");
+				tv.setText("Lost connection with sensor, please press disconnect and start again.");
 			} else if (RBLService.ACTION_GATT_SERVICES_DISCOVERED
 					.equals(action)) {
-				tv.append("\n\n");
+				tv.append("\n");
 				tv.append("Data are being collected\nPlease wait 1 minute for the next measurement...");
 				getGattService(mBluetoothLeService.getSupportedGattService());
 			} else if (RBLService.ACTION_DATA_AVAILABLE.equals(action)) {
@@ -169,6 +169,7 @@ public class Chat extends FragmentActivity {
 		setTheme(R.style.AppTheme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		ViewPager viewPager = findViewById(R.id.viewPager);
 		viewPager.setOffscreenPageLimit(2);  //number of ViewPager pages that will be kept in storage while swiping
@@ -349,7 +350,7 @@ public class Chat extends FragmentActivity {
 					}
 					else tv.setText("First measurement arrived:");
 					n += 1;
-					tv.append("\n\n");
+					tv.append("\n");
 					chooseQuality();
 					if (meMap.containsKey(newlocation)) {
 						String updloc = meMap.get(newlocation);
@@ -363,8 +364,8 @@ public class Chat extends FragmentActivity {
 					}
 					mMap.moveCamera(CameraUpdateFactory.newLatLng(newlocation));
 					count++;
+					buildGraph();
 				} else if (data.startsWith("b")) {
-				    buildGraph();
 					String data1 = data.substring(1);
 					fw.write(data1); //appends the string to the file
 					fw.write(" ");
@@ -372,12 +373,8 @@ public class Chat extends FragmentActivity {
 					fw.write(",");
 					fw.write(longitude);
 					humtemp = data1.split(" ");
-					tv4.setText(humtemp[0] + " %");
-					tv5.setText(humtemp[1] +" \u00b0C");
-//					tv.append("\n\n");
-//					tv.append("Humidity is " + humtemp[0] + " %");
-//					tv.append("\n");
-//					tv.append("Temperature is " + humtemp[1] +" \u00b0C");
+					tv3.setText(humtemp[0] + " %");
+					tv4.setText(humtemp[1] +" \u00b0C");
 				}
 				fw.close();
 
@@ -434,32 +431,37 @@ public class Chat extends FragmentActivity {
 		else {
 			i10=5;
 		}
+		String blue = "<font color='blue'>VERY GOOD!</font>";
+		String green = "<font color='green'>FAIR.</font>";
+		String yellow = "<font color='yellow'>MODERATE.</font>";
+		String orange = "<font color='orange'>POOR.</font>";
+		String red = "<font color='red'>VERY POOR!</font>";
 		switch (max(i10,i25)) {
 			case 1:
-				tv.append("Air quality is VERY GOOD!");
+				tv.append(Html.fromHtml("Air quality is " + blue));
 				break;
 			case 2:
-				tv.append("Air quality is FAIR.");
+				tv.append(Html.fromHtml("Air quality is " + green));
 				break;
 			case 3:
-				tv.append("Air quality is MODERATE.");
+				tv.append(Html.fromHtml("Air quality is " + yellow));
 				break;
 			case 4:
-				tv.append("Air quality is POOR.");
+				tv.append(Html.fromHtml("Air quality is " + orange));
 				break;
 			case 5:
-				tv.append("Air quality is VERY POOR!");
+				tv.append(Html.fromHtml("Air quality is " + red));
 				break;
 			default:
 				tv.append("Couldn't get a measurement, please wait for a minute.");
 		}
-		tv2.setText(pm25.get(count) + " μg/m3");
-		tv3.setText(pm10.get(count) + " μg/m3");
+		tv1.setText(pm25.get(count) + " μg/m3");
+		tv2.setText(pm10.get(count) + " μg/m3");
 //		tv.append("\nCurrent value of PM2,5 and PM10 concentration is " +pm25.get(count) + " and " + pm10.get(count) +" μg/m3 respectively.");
 	}
 
 	private void buildGraph() {
-        if (count>1) {
+        if (count>0) {
 			graph.removeAllSeries();
 			DataPoint[] point1 = new DataPoint[count];
 			for (int i = 0; i < count; i++) {
@@ -469,8 +471,13 @@ public class Chat extends FragmentActivity {
 			for (int i = 0; i < count; i++) {
 				point2[i] = new DataPoint(i, pm10.get(i));
 			}
+			DataPoint[] point3 = new DataPoint[count];
+			for (int i = 0; i < count; i++) {
+				point3[i] = new DataPoint(i, 25);
+			}
 			LineGraphSeries<DataPoint> series = new LineGraphSeries<>(point1);
 			LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>(point2);
+			LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(point3);
 			series.setTitle("PM2,5");
 			series.setColor(Color.GREEN);
 			series.setDrawDataPoints(true);
@@ -493,10 +500,14 @@ public class Chat extends FragmentActivity {
 					Toast.makeText(Chat.this, "PM10 value is " + dataPoint.getY() + " μg/m3", Toast.LENGTH_SHORT).show();
 				}
 			});
+            series2.setTitle("limit");
+			series2.setColor(Color.RED);
+			series2.setDrawDataPoints(false);
+			series2.setThickness(2);
 			graph.addSeries(series);
 			graph.addSeries(series1);
+			graph.addSeries(series2);
 			graph.getViewport().setMinY(0);
-//			graph.getViewport().setMaxY(80);
 			graph.getViewport().setMinX(0);
 			graph.getViewport().setMaxX(count - 1);
 			graph.getViewport().setScalableY(true); // enables vertical scrolling
@@ -508,7 +519,7 @@ public class Chat extends FragmentActivity {
 			// is not necessary
 			graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 			graph.getGridLabelRenderer().setNumVerticalLabels(8);
-			graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+			graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 		}
     }
 
@@ -607,10 +618,10 @@ public class Chat extends FragmentActivity {
 					R.layout.fragment1, container, false);
 
 			tv = (TextView) rootView.findViewById(R.id.textView);
-			tv2 = (TextView) rootView.findViewById(R.id.send1);
-			tv3 = (TextView) rootView.findViewById(R.id.send2);
-			tv4 = (TextView) rootView.findViewById(R.id.send3);
-			tv5 = (TextView) rootView.findViewById(R.id.send4);
+			tv1 = (TextView) rootView.findViewById(R.id.send1);
+			tv2 = (TextView) rootView.findViewById(R.id.send2);
+			tv3 = (TextView) rootView.findViewById(R.id.send3);
+			tv4 = (TextView) rootView.findViewById(R.id.send4);
 			tv.setMovementMethod(ScrollingMovementMethod.getInstance());
 			et = (EditText) rootView.findViewById(R.id.editText);
 			btn = (Button) rootView.findViewById(R.id.send);
@@ -651,10 +662,6 @@ public class Chat extends FragmentActivity {
 								 Bundle savedInstanceState) {
 			ViewGroup rootView = (ViewGroup) inflater.inflate(
 					R.layout.fragment3, container, false);
-			tv1 = (TextView) rootView.findViewById(R.id.textView1);
-			String red = "<font color='#FF0000'>Red</font>";
-			String blue = "<font color='#0000FF'>Blue</font>";
-			tv1.setText(Html.fromHtml(blue + " = data from hackair platform (needs internet!)\n" + red + " = my sensor"));
 
 			SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
 					.findFragmentById(R.id.map);
